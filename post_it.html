@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="post_it.css" />
+    <title>jQuery UI Draggable - Default functionality</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="post_it.js"></script>
+  </head>
+  <body>
+    <table id="main_board">
+      <tr>
+        <th width="25%">Backlog</th>
+        <th width="25%">Progress</th>
+        <th width="25%">Review</th>
+        <th width="25%">Done</th>
+      </tr>
+      <tr>
+        <td>
+          <div id="land_div" class="colspace">
+            <div id="001" class="draggable" contenteditable>Drag me</div>
+            <div id="002" class="draggable" contenteditable>Drag me</div>
+          </div>
+        </td>
+        <td><div class="colspace"></div></td>
+        <td>
+          <div class="colspace">
+            <button id="save_bt">Save</button
+            ><button id="create_bt">create</button>
+          </div>
+        </td>
+        <td>
+          <div class="colspace"></div>
+          <div id="out"></div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
