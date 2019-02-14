@@ -3,11 +3,6 @@ $(document).ready(function() {
   var post_it_count = 0;
 
   // page functions
-  $("body").on("DOMSubtreeModified", ".draggable", function() {
-    $("#out").text($(".draggable").text());
-    //   alert("confirm exit is being called");
-  });
-  $(".draggable").draggable();
   $("#save_bt").click(save);
   $("#create_bt").click(create);
   window.onload = load;
