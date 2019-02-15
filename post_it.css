@@ -107,3 +107,11 @@ td {
   color: #000000;
   text-decoration: none;
 }
+
+#bin {
+  padding: 5px 20px;
+  margin: 0px 10px 10px 0px;
+  float: right;
+  width: 25%;
+  background-color: lightcoral;
+}

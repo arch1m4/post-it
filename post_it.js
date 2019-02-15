@@ -1,30 +1,34 @@
 $(document).ready(function() {
   // globle variable
-  var post_it_count = 0;
 
   // page functions
   $("#save_bt").click(save);
   $("#create_bt").click(create);
+  $("#bin").droppable({
+    drop: throw_away
+  });
   window.onload = load;
 
   // functions
+  function throw_away(e, ui) {
+    console.log(e);
+    post_it_id = e["toElement"]["id"];
+    console.log("Post-it with ID: " + post_it_id + " is removed!");
+    $("#" + post_it_id).remove();
+  }
+
   function create(e, post_it_text = "", pos_x = "16", pos_y = "48") {
     //TODO: find solution to avoid position hard-code
     console.log(
-      "Create post_it id: " +
-        post_it_count +
-        "; text: " +
+      "Create post_it text: " +
         post_it_text +
         "; pos-X: " +
         pos_x +
         "; post-Y: " +
         pos_y
     );
-    post_it_count += 1;
     $("#land_div").append(
-      '<div id="' +
-        post_it_count +
-        '" class="draggable" style="position: absolute; top: ' +
+      '<div class="draggable" style="position: absolute; top: ' +
         pos_y +
         "px; left: " +
         pos_x +
@@ -32,8 +36,9 @@ $(document).ready(function() {
         post_it_text +
         "</div>"
     );
+    // .uniqueId();
+    $(".draggable").uniqueId();
     $(".draggable").draggable();
-    console.log("Post_it count: " + post_it_count);
   }
 
   function load() {
