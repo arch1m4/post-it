@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   // functions
   function throw_away(e, ui) {
-    console.log(e);
+    // console.log(e);
     post_it_id = e["toElement"]["id"];
     console.log("Post-it with ID: " + post_it_id + " is removed!");
     $("#" + post_it_id).remove();
@@ -32,7 +32,11 @@ $(document).ready(function() {
         pos_y +
         "px; left: " +
         pos_x +
-        'px"; contenteditable>' +
+        'px"; contenteditable onkeydown="if (event.key==' +
+        "'" +
+        "|" +
+        "'" +
+        ') event.preventDefault();">' +
         post_it_text +
         "</div>"
     );
@@ -45,14 +49,14 @@ $(document).ready(function() {
     console.log("Loading...");
     post_it = localStorage.getItem("post_it");
     console.log("saved string: " + post_it);
-    post_it_arr = post_it.split("|");
+    post_it_arr = post_it.split("||");
 
     $.each(post_it_arr, function(index, post) {
       if (post != "") {
         console.log(post);
-        post_text = post.split(":")[1];
-        pos_x = post.split(":")[2];
-        pos_y = post.split(":")[3];
+        post_text = post.split("|")[1];
+        pos_x = post.split("|")[2];
+        pos_y = post.split("|")[3];
         create(null, post_text, pos_x, pos_y);
       }
     });
@@ -76,14 +80,13 @@ $(document).ready(function() {
           "; pos Y: " +
           pos_y
       );
-      // TODO: restrict Post-it input text ":" and "|" to prevent save break
+      // Remove "|" to prevent post-in padding problem
+      text = text.split("|").join("");
       post_it = post_it.concat(
-        id + ":" + text + ":" + pos_x + ":" + pos_y + "|"
+        id + "|" + text + "|" + pos_x + "|" + pos_y + "||"
       );
     });
     console.log(post_it);
     localStorage.setItem("post_it", post_it);
-
-    //   return false;
   }
 });
